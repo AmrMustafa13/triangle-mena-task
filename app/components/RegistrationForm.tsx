@@ -68,7 +68,7 @@ export default function RegistrationForm() {
     setErrors({});
 
     try {
-      const response = await fetch("https://hub.trianglemena.xyz/api/contact", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Accept": "application/json",

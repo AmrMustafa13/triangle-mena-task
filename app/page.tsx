@@ -17,7 +17,7 @@ interface SessionsResponse {
 }
 
 async function getSessions(): Promise<SessionsResponse> {
-  const res = await fetch("https://hub.trianglemena.xyz/api/sessions", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/sessions`, {
     headers: {
       accept: "application/json",
     },
