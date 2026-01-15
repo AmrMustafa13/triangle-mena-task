@@ -22,14 +22,13 @@
   --color-hub71-border: var(--hub71-border);
   --color-hub71-text-gray: var(--hub71-text-gray);
   --color-hub71-label-green: var(--hub71-label-green);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-roc-grotesk-wide);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roc-grotesk-wide), Arial, Helvetica, sans-serif;
 }
 
 /* Custom scrollbar */
