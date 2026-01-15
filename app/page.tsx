@@ -3,49 +3,77 @@ import SessionCard from "./components/SessionCard";
 import RegistrationForm from "./components/RegistrationForm";
 import Footer from "./components/Footer";
 
-const upcomingSessions = [
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-];
+interface Session {
+  start: string;
+  end: string;
+  title: string;
+}
 
-const previousSessions = [
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-  {
-    date: "29 JUL, 2025",
-    time: "10:00 TO 12:00 PM",
-    title: "Info Session: A Deep Dive into the Hub71 Ecosystem",
-  },
-];
+interface SessionsResponse {
+  sessions: {
+    upcoming: Session[];
+    previous: Session[];
+  };
+}
 
-export default function Home() {
+async function getSessions(): Promise<SessionsResponse> {
+  const res = await fetch("https://hub.trianglemena.xyz/api/sessions", {
+    headers: {
+      accept: "application/json",
+    },
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch sessions");
+  }
+
+  return res.json();
+}
+
+function formatSession(session: Session) {
+  const startDate = new Date(session.start);
+  const endDate = new Date(session.end);
+
+  const date = startDate
+    .toLocaleDateString("en-US", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .toUpperCase()
+    .replace(" ", " ")
+    .replace(",", ",");
+
+  const startTime = startDate.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const endTime = endDate.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return {
+    date,
+    time: `${startTime} TO ${endTime}`,
+    title: session.title,
+  };
+}
+
+export default async function Home() {
+  const data = await getSessions();
+  const upcomingSessions = data.sessions.upcoming.map(formatSession);
+  const previousSessions = data.sessions.previous.map(formatSession);
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       {/* Main Content */}
-      <main className="flex-1 max-w-[1400px] mx-auto w-full px-6 lg:px-12 py-12">
+      <main className="flex-1 max-w-350 mx-auto w-full px-6 lg:px-12 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column - Sessions */}
           <div className="lg:col-span-7">
