@@ -79,14 +79,14 @@ export default function Footer() {
                   placeholder="Your Mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2.5 text-sm border border-gray-300 rounded-l bg-white focus:outline-none focus:border-[#00A651]"
+                  className="flex-1 p-5 text-sm border border-black border-r-0 rounded-l outline-none bg-[#EFF1F5]"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2.5 bg-white border border-l-0 border-gray-300 rounded-r hover:bg-gray-50 transition-colors flex items-center gap-1 text-xs font-semibold text-[#1A2B4A]"
+                  className="p-5 bg-[#EFF1F5] border border-l-0 border-black flex items-center gap-1 text-sm font-bold text-black"
                 >
                   SUBSCRIBE
-                  <MdOutlineKeyboardArrowRight size={20} color="#1A2B4A" />
+                  <MdOutlineKeyboardArrowRight size={20} color="#000" />
                 </button>
               </form>
             </div>
