@@ -10,7 +10,7 @@ import {
   FaLinkedinIn,
   FaTiktok,
 } from "react-icons/fa";
-import { FiArrowRight } from "react-icons/fi";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -49,7 +49,7 @@ export default function Footer() {
     <footer className="bg-[#EFF1F5] pt-14 pb-5.5">
       <div className="max-w-350 mx-auto px-6 lg:px-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 ">
           {/* Left Section - Logo and Newsletter */}
           <div className="lg:col-span-4">
             <Image
@@ -60,17 +60,16 @@ export default function Footer() {
               className="object-contain"
             />
 
-            <div className="mt-8">
-              <h3 className="text-[#00C853] text-3xl font-bold leading-none">
-                GET
-              </h3>
-              <h3 className="text-[#00C853] text-3xl font-black leading-none">
-                IN TOUCH
-              </h3>
-            </div>
+            <Image
+              src="/in-touch.svg"
+              alt="Get in Touch"
+              width={472}
+              height={152}
+              className="object-contain mb-2.5 mt-12.5"
+            />
 
-            <div className="mt-6">
-              <p className="text-[#1A2B4A] text-xs font-bold tracking-wider mb-3">
+            <div className="mb-15">
+              <p className="text-black text-xl font-bold tracking-wider mb-5">
                 SUBSCRIBE
                 <br />
                 TO OUR NEWSLETTER
@@ -88,7 +87,7 @@ export default function Footer() {
                   className="px-4 py-2.5 bg-white border border-l-0 border-gray-300 rounded-r hover:bg-gray-50 transition-colors flex items-center gap-1 text-xs font-semibold text-[#1A2B4A]"
                 >
                   SUBSCRIBE
-                  <FiArrowRight size={16} color="#1A2B4A" />
+                  <MdOutlineKeyboardArrowRight size={20} color="#1A2B4A" />
                 </button>
               </form>
             </div>
@@ -98,12 +97,12 @@ export default function Footer() {
           <div className="lg:col-span-8">
             <div className="grid grid-cols-3 gap-6">
               {/* Column 1 */}
-              <div className="space-y-3">
+              <div className="space-y-5">
                 {column1Links.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block text-xs font-semibold text-[#1A2B4A] hover:text-[#00A651] transition-colors"
+                    className="block text-sm font-medium text-black"
                   >
                     {link.label}
                   </Link>
@@ -111,12 +110,12 @@ export default function Footer() {
               </div>
 
               {/* Column 2 */}
-              <div className="space-y-3">
+              <div className="space-y-5">
                 {column2Links.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block text-xs font-semibold text-[#1A2B4A] hover:text-[#00A651] transition-colors"
+                    className="block text-sm font-medium text-black"
                   >
                     {link.label}
                   </Link>
@@ -124,12 +123,12 @@ export default function Footer() {
               </div>
 
               {/* Column 3 */}
-              <div className="space-y-3">
+              <div className="space-y-5">
                 {column3Links.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="block text-xs font-semibold text-[#1A2B4A] hover:text-[#00A651] transition-colors"
+                    className="block text-sm font-medium text-black"
                   >
                     {link.label}
                   </Link>
