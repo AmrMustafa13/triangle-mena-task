@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Search, PersonStanding, Menu } from "lucide-react";
+import { IoSearch, IoAccessibility, IoMenu } from "react-icons/io5";
 
 export default function Header() {
   return (
@@ -38,17 +38,17 @@ export default function Header() {
 
           {/* Search Icon */}
           <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_#0000001A]">
-            <Search size={22} color="#000" />
+            <IoSearch size={22} color="#000" />
           </button>
 
           {/* PersonStanding Icon */}
           <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_#0000001A]">
-            <PersonStanding size={26} color="#000" />
+            <IoAccessibility size={26} color="#000" />
           </button>
 
           {/* Menu Button */}
           <button className="w-13.75 h-13.75 flex items-center justify-center rounded-lg bg-[#0347FF]">
-            <Menu size={30} color="#FFF" />
+            <IoMenu size={30} color="#FFF" />
           </button>
         </div>
       </div>
