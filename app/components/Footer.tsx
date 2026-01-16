@@ -49,9 +49,9 @@ export default function Footer() {
     <footer className="bg-[#EFF1F5] pt-14 pb-5.5">
       <div className="max-w-350 mx-auto px-6 lg:px-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 ">
+        <div className="flex justify-between gap-16">
           {/* Left Section - Logo and Newsletter */}
-          <div className="lg:col-span-4">
+          <div>
             <Image
               src="/logo.svg"
               alt="Hub71 Logo"
@@ -59,7 +59,6 @@ export default function Footer() {
               height={29}
               className="object-contain"
             />
-
             <Image
               src="/in-touch.svg"
               alt="Get in Touch"
@@ -92,48 +91,68 @@ export default function Footer() {
               </form>
             </div>
           </div>
+          <div className="flex justify-between gap-16 mt-16">
+            {/* Column 1 */}
+            <div
+              className="space-y-5 pl-5"
+              style={{
+                borderLeft: "1px solid",
+                borderImageSource:
+                  "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
+                borderImageSlice: 1,
+              }}
+            >
+              {column1Links.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block text-sm font-medium text-black"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-          {/* Right Section - Navigation Links */}
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-3 gap-6">
-              {/* Column 1 */}
-              <div className="space-y-5">
-                {column1Links.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="block text-sm font-medium text-black"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+            {/* Column 2 */}
+            <div
+              className="space-y-5 pl-5"
+              style={{
+                borderLeft: "1px solid",
+                borderImageSource:
+                  "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
+                borderImageSlice: 1,
+              }}
+            >
+              {column2Links.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block text-sm font-medium text-black"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-              {/* Column 2 */}
-              <div className="space-y-5">
-                {column2Links.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="block text-sm font-medium text-black"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Column 3 */}
-              <div className="space-y-5">
-                {column3Links.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="block text-sm font-medium text-black"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+            {/* Column 3 */}
+            <div
+              className="space-y-5 pl-5"
+              style={{
+                borderLeft: "1px solid",
+                borderImageSource:
+                  "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
+                borderImageSlice: 1,
+              }}
+            >
+              {column3Links.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="block text-sm font-medium text-black"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
