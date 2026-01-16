@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { VscDebugRestart } from "react-icons/vsc";
 
 interface FormData {
   firstName: string;
@@ -20,13 +21,6 @@ interface FormErrors {
   [key: string]: string[];
 }
 
-const RefreshIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M14 8A6 6 0 1 1 8 2" stroke="#666666" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M8 2L10 4L8 6" stroke="#666666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
 export default function RegistrationForm() {
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -42,18 +36,23 @@ export default function RegistrationForm() {
     marketingConsent: true,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
     // Clear error for this field when user starts typing
     if (errors[name]) {
-      setErrors(prev => {
+      setErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[name];
         return newErrors;
@@ -68,25 +67,28 @@ export default function RegistrationForm() {
     setErrors({});
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            companyName: formData.companyName,
+            jobTitle: formData.jobTitle,
+            companyWebsite: formData.companyWebsite,
+            gender: formData.gender,
+            hearAboutHub: formData.hearAboutHub,
+            interestedIn: formData.interestedIn,
+            country: formData.country,
+          }),
         },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          companyName: formData.companyName,
-          jobTitle: formData.jobTitle,
-          companyWebsite: formData.companyWebsite,
-          gender: formData.gender,
-          hearAboutHub: formData.hearAboutHub,
-          interestedIn: formData.interestedIn,
-          country: formData.country,
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -129,23 +131,29 @@ export default function RegistrationForm() {
     setSubmitStatus("idle");
   };
 
-  const inputClasses = "w-full px-4 py-3 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#00A651] transition-colors bg-white";
-  const selectClasses = "w-full px-4 py-3 text-sm border border-gray-200 rounded focus:outline-none focus:border-[#00A651] transition-colors bg-white text-gray-500 cursor-pointer";
+  const inputClasses =
+    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A]";
+  const selectClasses =
+    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] text-gray-400 cursor-pointer";
 
   return (
-    <div className="bg-[#F5F5F5] rounded-lg p-8">
+    <div className="bg-[#EFF1F57A] py-14 px-8">
       {/* Header */}
       <div className="mb-6">
-        <p className="text-[#00A651] text-xs font-bold tracking-wider mb-2">
+        <p className="text-[#0048FF] text-sm font-bold mb-2">
           DON&apos;T MISS UPCOMING SESSIONS
         </p>
-        <h2 className="text-[#1A2B4A] text-2xl font-bold leading-tight">
-          Register<br />Your Interest Now
+        <h2 className="text-black text-4xl font-bold leading-tight">
+          Register
+          <br />
+          Your Interest Now
         </h2>
       </div>
 
+      <div className="h-px bg-[#D9D9D9] my-6"></div>
+
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-2.5">
         <div>
           <input
             type="text"
@@ -156,7 +164,9 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.firstName ? "border-red-500" : ""}`}
             required
           />
-          {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName[0]}</p>}
+          {errors.firstName && (
+            <p className="text-red-500 text-xs mt-1">{errors.firstName[0]}</p>
+          )}
         </div>
 
         <div>
@@ -169,7 +179,9 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.lastName ? "border-red-500" : ""}`}
             required
           />
-          {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName[0]}</p>}
+          {errors.lastName && (
+            <p className="text-red-500 text-xs mt-1">{errors.lastName[0]}</p>
+          )}
         </div>
 
         <div>
@@ -182,7 +194,9 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.email ? "border-red-500" : ""}`}
             required
           />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email[0]}</p>}
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">{errors.email[0]}</p>
+          )}
         </div>
 
         <div>
@@ -195,7 +209,9 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.companyName ? "border-red-500" : ""}`}
             required
           />
-          {errors.companyName && <p className="text-red-500 text-xs mt-1">{errors.companyName[0]}</p>}
+          {errors.companyName && (
+            <p className="text-red-500 text-xs mt-1">{errors.companyName[0]}</p>
+          )}
         </div>
 
         <div>
@@ -208,7 +224,9 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.jobTitle ? "border-red-500" : ""}`}
             required
           />
-          {errors.jobTitle && <p className="text-red-500 text-xs mt-1">{errors.jobTitle[0]}</p>}
+          {errors.jobTitle && (
+            <p className="text-red-500 text-xs mt-1">{errors.jobTitle[0]}</p>
+          )}
         </div>
 
         <div>
@@ -221,7 +239,11 @@ export default function RegistrationForm() {
             className={`${inputClasses} ${errors.companyWebsite ? "border-red-500" : ""}`}
             required
           />
-          {errors.companyWebsite && <p className="text-red-500 text-xs mt-1">{errors.companyWebsite[0]}</p>}
+          {errors.companyWebsite && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.companyWebsite[0]}
+            </p>
+          )}
         </div>
 
         <div>
@@ -232,11 +254,15 @@ export default function RegistrationForm() {
             className={`${selectClasses} ${errors.gender ? "border-red-500" : ""}`}
             required
           >
-            <option value="" disabled>Gender *</option>
+            <option value="" disabled>
+              Gender *
+            </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-          {errors.gender && <p className="text-red-500 text-xs mt-1">{errors.gender[0]}</p>}
+          {errors.gender && (
+            <p className="text-red-500 text-xs mt-1">{errors.gender[0]}</p>
+          )}
         </div>
 
         <div>
@@ -246,7 +272,9 @@ export default function RegistrationForm() {
             onChange={handleInputChange}
             className={`${selectClasses} ${errors.hearAboutHub ? "border-red-500" : ""}`}
           >
-            <option value="" disabled>How did you hear about Hub71</option>
+            <option value="" disabled>
+              How did you hear about Hub71
+            </option>
             <option value="Social Media">Social Media</option>
             <option value="Friend/Colleague">Friend/Colleague</option>
             <option value="Event">Event</option>
@@ -254,7 +282,11 @@ export default function RegistrationForm() {
             <option value="News Article">News Article</option>
             <option value="Other">Other</option>
           </select>
-          {errors.hearAboutHub && <p className="text-red-500 text-xs mt-1">{errors.hearAboutHub[0]}</p>}
+          {errors.hearAboutHub && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.hearAboutHub[0]}
+            </p>
+          )}
         </div>
 
         <div>
@@ -266,7 +298,11 @@ export default function RegistrationForm() {
             onChange={handleInputChange}
             className={`${inputClasses} ${errors.interestedIn ? "border-red-500" : ""}`}
           />
-          {errors.interestedIn && <p className="text-red-500 text-xs mt-1">{errors.interestedIn[0]}</p>}
+          {errors.interestedIn && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.interestedIn[0]}
+            </p>
+          )}
         </div>
 
         <div>
@@ -276,26 +312,30 @@ export default function RegistrationForm() {
             onChange={handleInputChange}
             className={`${selectClasses} ${errors.country ? "border-red-500" : ""}`}
           >
-            <option value="" disabled>Country of residence</option>
+            <option value="" disabled>
+              Country of residence
+            </option>
             <option value="UAE">United Arab Emirates</option>
             <option value="Saudi Arabia">Saudi Arabia</option>
             <option value="United States">United States</option>
             <option value="United Kingdom">United Kingdom</option>
             <option value="Other">Other</option>
           </select>
-          {errors.country && <p className="text-red-500 text-xs mt-1">{errors.country[0]}</p>}
+          {errors.country && (
+            <p className="text-red-500 text-xs mt-1">{errors.country[0]}</p>
+          )}
         </div>
 
         {/* Marketing Consent Checkbox */}
-        <label className="flex items-start gap-3 cursor-pointer mt-4">
+        <label className="flex items-start gap-2.5 cursor-pointer mt-5">
           <input
             type="checkbox"
             name="marketingConsent"
             checked={formData.marketingConsent}
             onChange={handleInputChange}
-            className="mt-1 w-4 h-4 accent-[#00A651] cursor-pointer"
+            className="w-5 h-5 accent-[#0026AB] cursor-pointer"
           />
-          <span className="text-xs text-gray-600 leading-relaxed">
+          <span className="text-sm text-black leading-relaxed">
             I agree to receive marketing emails and communications from Hub71
           </span>
         </label>
@@ -314,11 +354,11 @@ export default function RegistrationForm() {
         )}
 
         {/* Submit and Clear */}
-        <div className="flex items-center gap-4 mt-6">
+        <div className="flex items-center gap-32 mt-6">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 bg-[#1A2B4A] text-white py-3.5 px-8 text-sm font-semibold rounded hover:bg-[#0f1a2e] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-[#0048FF] text-white py-5 px-20 text-sm font-bold"
           >
             {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
           </button>
@@ -326,9 +366,9 @@ export default function RegistrationForm() {
             type="button"
             onClick={clearForm}
             disabled={isSubmitting}
-            className="flex items-center gap-2 text-gray-500 text-sm hover:text-gray-700 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2.5 text-black text-sm text-nowrap"
           >
-            <RefreshIcon />
+            <VscDebugRestart size={20} color="#0026AB" className="rotate-45" />
             Clear Form
           </button>
         </div>

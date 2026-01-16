@@ -17,12 +17,15 @@ interface SessionsResponse {
 }
 
 async function getSessions(): Promise<SessionsResponse> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/sessions`, {
-    headers: {
-      accept: "application/json",
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/sessions`,
+    {
+      headers: {
+        accept: "application/json",
+      },
+      next: { revalidate: 60 },
     },
-    next: { revalidate: 60 },
-  });
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch sessions");
@@ -73,16 +76,16 @@ export default async function Home() {
       <Header />
 
       {/* Main Content */}
-      <main className="flex-1 max-w-350 mx-auto w-full px-6 lg:px-12 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <main className="flex-1 max-w-350 mx-auto w-full px-6 lg:px-12 pb-26 pt-12">
+        <div className="flex justify-between gap-9.5">
           {/* Left Column - Sessions */}
-          <div className="lg:col-span-7">
+          <div className="mt-16">
             {/* Upcoming Sessions */}
-            <section className="mb-12">
-              <p className="text-[#00A651] text-xs font-bold tracking-wider mb-2">
+            <section className="mb-20">
+              <p className="text-[#0048FF] text-sm font-bold mb-2.5">
                 KEEP UPDATED
               </p>
-              <h1 className="text-[#1A2B4A] text-3xl font-bold mb-6">
+              <h1 className="text-black text-4xl font-bold mb-7.5">
                 Upcoming Sessions
               </h1>
 
@@ -102,10 +105,10 @@ export default async function Home() {
 
             {/* Previous Sessions */}
             <section>
-              <p className="text-[#00A651] text-xs font-bold tracking-wider mb-2">
+              <p className="text-[#0048FF] text-sm font-bold mb-2.5">
                 KEEP UPDATED
               </p>
-              <h2 className="text-[#1A2B4A] text-3xl font-bold mb-6">
+              <h2 className="text-black text-4xl font-bold mb-7.5">
                 Previous Sessions
               </h2>
 
@@ -125,7 +128,7 @@ export default async function Home() {
           </div>
 
           {/* Right Column - Registration Form */}
-          <div className="lg:col-span-5">
+          <div>
             <RegistrationForm />
           </div>
         </div>
