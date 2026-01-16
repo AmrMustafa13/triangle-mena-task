@@ -65,7 +65,7 @@ export default function Footer() {
               alt="Get in Touch"
               width={472}
               height={152}
-              className="object-contain mb-2.5 mt-12.5"
+              className="object-contain mb-5 mt-12.5"
             />
 
             <div className="mb-15">
