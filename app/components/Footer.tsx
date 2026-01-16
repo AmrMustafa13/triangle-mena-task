@@ -91,7 +91,7 @@ export default function Footer() {
               </form>
             </div>
           </div>
-          <div className="flex justify-between gap-16 mt-16">
+          <div className="flex justify-between gap-16 h-fit mt-16">
             {/* Column 1 */}
             <div
               className="space-y-5 pl-5"
