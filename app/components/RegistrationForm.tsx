@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
 import { FormData, FormErrors, SubmitStatus } from "../types/form";
+import { validateField, validateForm, RegistrationFormData } from "../utils/validation";
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -21,28 +22,72 @@ export default function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validateSingleField = useCallback(
+    (name: string, value: string | boolean) => {
+      const error = validateField(name as keyof RegistrationFormData, value);
+      setErrors((prev) => {
+        if (error) {
+          return { ...prev, [name]: [error] };
+        }
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    },
+    []
+  );
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value, type } = e.target;
+    const newValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+      [name]: newValue,
     }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        return newErrors;
-      });
+
+    // Validate on change only if the field has been touched
+    if (touched[name]) {
+      validateSingleField(name, newValue);
     }
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const fieldValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
+    // Mark field as touched
+    setTouched((prev) => ({ ...prev, [name]: true }));
+
+    // Validate on blur
+    validateSingleField(name, fieldValue);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Mark all fields as touched
+    const allTouched: Record<string, boolean> = {};
+    Object.keys(formData).forEach((key) => {
+      allTouched[key] = true;
+    });
+    setTouched(allTouched);
+
+    // Validate all fields before submitting
+    const validationErrors = validateForm(formData as RegistrationFormData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
     setErrors({});
@@ -109,6 +154,7 @@ export default function RegistrationForm() {
       marketingConsent: false,
     });
     setErrors({});
+    setTouched({});
     setSubmitStatus("idle");
   };
 
@@ -142,8 +188,8 @@ export default function RegistrationForm() {
             placeholder="First Name *"
             value={formData.firstName}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.firstName ? "border-red-500" : ""}`}
-            required
           />
           {errors.firstName && (
             <p className="text-red-500 text-xs mt-1">{errors.firstName[0]}</p>
@@ -157,8 +203,8 @@ export default function RegistrationForm() {
             placeholder="Last Name *"
             value={formData.lastName}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.lastName ? "border-red-500" : ""}`}
-            required
           />
           {errors.lastName && (
             <p className="text-red-500 text-xs mt-1">{errors.lastName[0]}</p>
@@ -172,8 +218,8 @@ export default function RegistrationForm() {
             placeholder="Email Address *"
             value={formData.email}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.email ? "border-red-500" : ""}`}
-            required
           />
           {errors.email && (
             <p className="text-red-500 text-xs mt-1">{errors.email[0]}</p>
@@ -187,8 +233,8 @@ export default function RegistrationForm() {
             placeholder="Company Name *"
             value={formData.companyName}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.companyName ? "border-red-500" : ""}`}
-            required
           />
           {errors.companyName && (
             <p className="text-red-500 text-xs mt-1">{errors.companyName[0]}</p>
@@ -202,8 +248,8 @@ export default function RegistrationForm() {
             placeholder="Job Title *"
             value={formData.jobTitle}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.jobTitle ? "border-red-500" : ""}`}
-            required
           />
           {errors.jobTitle && (
             <p className="text-red-500 text-xs mt-1">{errors.jobTitle[0]}</p>
@@ -212,13 +258,13 @@ export default function RegistrationForm() {
 
         <div>
           <input
-            type="text"
+            type="url"
             name="companyWebsite"
             placeholder="Company Website *"
             value={formData.companyWebsite}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.companyWebsite ? "border-red-500" : ""}`}
-            required
           />
           {errors.companyWebsite && (
             <p className="text-red-500 text-xs mt-1">
@@ -232,8 +278,8 @@ export default function RegistrationForm() {
             name="gender"
             value={formData.gender}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${selectClasses} ${errors.gender ? "border-red-500" : ""}`}
-            required
           >
             <option value="" disabled>
               Gender *
@@ -251,6 +297,7 @@ export default function RegistrationForm() {
             name="hearAboutHub"
             value={formData.hearAboutHub}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${selectClasses} ${errors.hearAboutHub ? "border-red-500" : ""}`}
           >
             <option value="" disabled>
@@ -277,6 +324,7 @@ export default function RegistrationForm() {
             placeholder="Interested In"
             value={formData.interestedIn}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${inputClasses} ${errors.interestedIn ? "border-red-500" : ""}`}
           />
           {errors.interestedIn && (
@@ -291,6 +339,7 @@ export default function RegistrationForm() {
             name="country"
             value={formData.country}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             className={`${selectClasses} ${errors.country ? "border-red-500" : ""}`}
           >
             <option value="" disabled>
