@@ -6,7 +6,7 @@ import { IoSearch, IoAccessibility, IoMenu } from "react-icons/io5";
 
 export default function Header() {
   return (
-    <header className="w-full bg-white border-b border-[#E5E5E5]">
+    <header className="w-full bg-white border-b border-border-light">
       <div className="max-w-350 mx-auto px-6 lg:px-12 py-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -28,26 +28,26 @@ export default function Header() {
               alt="Impact Report Icon"
               width={134}
               height={55}
-              className="object-contain rounded-lg shadow-[0px_0px_20px_3px_#0000001A]"
+              className="object-contain rounded-lg shadow-[0px_0px_20px_3px_var(--shadow-color)]"
             />
           </button>
           {/* Arabic Toggle */}
-          <button className="w-13.75 h-13.75 text-white bg-[#0347FF] rounded-lg">
+          <button className="w-13.75 h-13.75 text-white bg-primary-blue rounded-lg">
             عربي
           </button>
 
           {/* Search Icon */}
-          <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_#0000001A]">
+          <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_var(--shadow-color)]">
             <IoSearch size={22} color="#000" />
           </button>
 
           {/* PersonStanding Icon */}
-          <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_#0000001A]">
+          <button className="w-13.75 h-13.75 flex items-center justify-center bg-white rounded-lg shadow-[0px_0px_20px_3px_var(--shadow-color)]">
             <IoAccessibility size={26} color="#000" />
           </button>
 
           {/* Menu Button */}
-          <button className="w-13.75 h-13.75 flex items-center justify-center rounded-lg bg-[#0347FF]">
+          <button className="w-13.75 h-13.75 flex items-center justify-center rounded-lg bg-primary-blue">
             <IoMenu size={30} color="#FFF" />
           </button>
         </div>

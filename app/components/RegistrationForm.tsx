@@ -132,15 +132,15 @@ export default function RegistrationForm() {
   };
 
   const inputClasses =
-    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] font-poppins";
+    "w-full px-4 py-3.5 text-sm border border-border-gray outline-none bg-light-gray-bg-alpha font-poppins";
   const selectClasses =
-    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] text-gray-400 cursor-pointer font-poppins";
+    "w-full px-4 py-3.5 text-sm border border-border-gray outline-none bg-light-gray-bg-alpha text-gray-400 cursor-pointer font-poppins";
 
   return (
-    <div className="bg-[#EFF1F57A] py-14 px-8">
+    <div className="bg-light-gray-bg-alpha py-14 px-8">
       {/* Header */}
       <div className="mb-6">
-        <p className="text-[#0048FF] text-sm font-bold mb-2">
+        <p className="text-accent-blue text-sm font-bold mb-2">
           DON&apos;T MISS UPCOMING SESSIONS
         </p>
         <h2 className="text-black text-4xl font-bold leading-tight">
@@ -150,7 +150,7 @@ export default function RegistrationForm() {
         </h2>
       </div>
 
-      <div className="h-px bg-[#D9D9D9] my-6"></div>
+      <div className="h-px bg-border-gray my-6"></div>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-2.5">
@@ -333,7 +333,7 @@ export default function RegistrationForm() {
             name="marketingConsent"
             checked={formData.marketingConsent}
             onChange={handleInputChange}
-            className="w-5 h-5 accent-[#0026AB] cursor-pointer"
+            className="w-5 h-5 accent-dark-blue-accent cursor-pointer"
           />
           <span className="text-sm text-black leading-relaxed font-poppins">
             I agree to receive marketing emails and communications from Hub71
@@ -358,7 +358,7 @@ export default function RegistrationForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 bg-[#0048FF] text-white py-5 px-20 text-sm font-bold"
+            className="flex-1 bg-accent-blue text-white py-5 px-20 text-sm font-bold"
           >
             {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
           </button>
@@ -368,7 +368,7 @@ export default function RegistrationForm() {
             disabled={isSubmitting}
             className="flex items-center gap-2.5 text-black text-sm text-nowrap font-poppins"
           >
-            <VscDebugRestart size={20} color="#0026AB" className="rotate-45" />
+            <VscDebugRestart size={20} color="var(--dark-blue-accent)" className="rotate-45" />
             Clear Form
           </button>
         </div>

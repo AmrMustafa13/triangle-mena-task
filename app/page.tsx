@@ -82,7 +82,7 @@ export default async function Home() {
           <div className="mt-16">
             {/* Upcoming Sessions */}
             <section className="mb-20">
-              <p className="text-[#0048FF] text-sm font-bold mb-2.5">
+              <p className="text-accent-blue text-sm font-bold mb-2.5">
                 KEEP UPDATED
               </p>
               <h1 className="text-black text-4xl font-bold mb-7.5">
@@ -105,7 +105,7 @@ export default async function Home() {
 
             {/* Previous Sessions */}
             <section>
-              <p className="text-[#0048FF] text-sm font-bold mb-2.5">
+              <p className="text-accent-blue text-sm font-bold mb-2.5">
                 KEEP UPDATED
               </p>
               <h2 className="text-black text-4xl font-bold mb-7.5">

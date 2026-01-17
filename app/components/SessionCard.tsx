@@ -17,10 +17,10 @@ export default function SessionCard({
   buttonType,
 }: SessionCardProps) {
   return (
-    <div className="bg-[#EFF1F57A] px-6 py-8.5 flex items-center justify-between gap-24">
+    <div className="bg-light-gray-bg-alpha px-6 py-8.5 flex items-center justify-between gap-24">
       <div className="flex-1">
         {/* Date and Time */}
-        <div className="flex gap-2 text-[#0048FF] text-sm font-bold mb-2">
+        <div className="flex gap-2 text-accent-blue text-sm font-bold mb-2">
           <BiCalendar size={16} />
           <span>
             {date} | {time}
@@ -36,7 +36,7 @@ export default function SessionCard({
       {/* Action Button */}
       <button
         className={`px-10 py-5 text-sm font-bold text-white whitespace-nowrap ${
-          buttonType === "register" ? "bg-[#D64D32]" : "bg-[#6BCE97]"
+          buttonType === "register" ? "bg-btn-register" : "bg-btn-recording"
         }`}
       >
         {buttonText}

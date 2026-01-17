@@ -46,7 +46,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#EFF1F5] pt-14 pb-5.5">
+    <footer className="bg-light-gray-bg pt-14 pb-5.5">
       <div className="max-w-350 mx-auto px-6 lg:px-12">
         {/* Main Footer Content */}
         <div className="flex justify-between gap-16">
@@ -79,11 +79,11 @@ export default function Footer() {
                   placeholder="Your Mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 p-5 text-sm border border-black border-r-0 rounded-l outline-none bg-[#EFF1F5] font-poppins"
+                  className="flex-1 p-5 text-sm border border-black border-r-0 rounded-l outline-none bg-light-gray-bg font-poppins"
                 />
                 <button
                   type="submit"
-                  className="p-5 bg-[#EFF1F5] border border-l-0 border-black flex items-center gap-1 text-sm font-bold text-black"
+                  className="p-5 bg-light-gray-bg border border-l-0 border-black flex items-center gap-1 text-sm font-bold text-black"
                 >
                   SUBSCRIBE
                   <MdOutlineKeyboardArrowRight size={20} color="#000" />
@@ -185,13 +185,13 @@ export default function Footer() {
               <FaInstagram size={20} color="#000" />
             </Link>
             <Link href="#">
-              <FaYoutube size={20} color="#010A4A" />
+              <FaYoutube size={20} color="var(--dark-blue)" />
             </Link>
             <Link href="#">
-              <FaLinkedinIn size={20} color="#010A4A" />
+              <FaLinkedinIn size={20} color="var(--dark-blue)" />
             </Link>
             <Link href="#">
-              <FaTiktok size={20} color="#010A4A" />
+              <FaTiktok size={20} color="var(--dark-blue)" />
             </Link>
           </div>
         </div>
