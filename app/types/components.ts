@@ -19,6 +19,7 @@ export interface SessionsSectionProps {
   buttonText: string;
   buttonType: ButtonType;
   headingLevel?: HeadingLevel;
+  emptyMessage?: string;
 }
 
 export interface MainContentProps {

@@ -18,6 +18,7 @@ export default function MainContent({
             buttonText="REGISTER NOW"
             buttonType="register"
             headingLevel="h1"
+            emptyMessage="No upcoming sessions available"
           />
 
           <SessionsSection
@@ -27,6 +28,7 @@ export default function MainContent({
             buttonText="GET RECORDING"
             buttonType="recording"
             headingLevel="h2"
+            emptyMessage="No previous sessions available"
           />
         </div>
 
