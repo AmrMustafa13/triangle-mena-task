@@ -23,6 +23,7 @@
   --color-hub71-text-gray: var(--hub71-text-gray);
   --color-hub71-label-green: var(--hub71-label-green);
   --font-sans: var(--font-roc-grotesk-wide);
+  --font-poppins: var(--font-poppins);
 }
 
 body {

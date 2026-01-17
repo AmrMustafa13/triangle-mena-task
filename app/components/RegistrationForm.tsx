@@ -132,9 +132,9 @@ export default function RegistrationForm() {
   };
 
   const inputClasses =
-    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A]";
+    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] font-poppins";
   const selectClasses =
-    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] text-gray-400 cursor-pointer";
+    "w-full px-4 py-3.5 text-sm border border-[#D9D9D9] outline-none bg-[#EFF1F57A] text-gray-400 cursor-pointer font-poppins";
 
   return (
     <div className="bg-[#EFF1F57A] py-14 px-8">
@@ -335,7 +335,7 @@ export default function RegistrationForm() {
             onChange={handleInputChange}
             className="w-5 h-5 accent-[#0026AB] cursor-pointer"
           />
-          <span className="text-sm text-black leading-relaxed">
+          <span className="text-sm text-black leading-relaxed font-poppins">
             I agree to receive marketing emails and communications from Hub71
           </span>
         </label>
@@ -366,7 +366,7 @@ export default function RegistrationForm() {
             type="button"
             onClick={clearForm}
             disabled={isSubmitting}
-            className="flex items-center gap-2.5 text-black text-sm text-nowrap"
+            className="flex items-center gap-2.5 text-black text-sm text-nowrap font-poppins"
           >
             <VscDebugRestart size={20} color="#0026AB" className="rotate-45" />
             Clear Form
