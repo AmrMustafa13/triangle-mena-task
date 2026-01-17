@@ -1,11 +1,6 @@
 import SessionsSection from "./SessionsSection";
 import RegistrationForm from "./RegistrationForm";
-import { FormattedSession } from "../types/session";
-
-interface MainContentProps {
-  upcomingSessions: FormattedSession[];
-  previousSessions: FormattedSession[];
-}
+import { MainContentProps } from "../types/components";
 
 export default function MainContent({
   upcomingSessions,

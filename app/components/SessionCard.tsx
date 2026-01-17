@@ -1,13 +1,7 @@
 "use client";
 
 import { BiCalendar } from "react-icons/bi";
-interface SessionCardProps {
-  date: string;
-  time: string;
-  title: string;
-  buttonText: string;
-  buttonType: "register" | "recording";
-}
+import { SessionCardProps } from "../types/components";
 
 export default function SessionCard({
   date,

@@ -2,24 +2,7 @@
 
 import { useState } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
-
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  companyName: string;
-  jobTitle: string;
-  companyWebsite: string;
-  gender: string;
-  hearAboutHub: string;
-  interestedIn: string;
-  country: string;
-  marketingConsent: boolean;
-}
-
-interface FormErrors {
-  [key: string]: string[];
-}
+import { FormData, FormErrors, SubmitStatus } from "../types/form";
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -36,9 +19,7 @@ export default function RegistrationForm() {
     marketingConsent: true,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [errors, setErrors] = useState<FormErrors>({});
 
   const handleInputChange = (

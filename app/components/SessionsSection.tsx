@@ -1,14 +1,5 @@
 import SessionCard from "./SessionCard";
-import { FormattedSession } from "../types/session";
-
-interface SessionsSectionProps {
-  label: string;
-  title: string;
-  sessions: FormattedSession[];
-  buttonText: string;
-  buttonType: "register" | "recording";
-  headingLevel?: "h1" | "h2";
-}
+import { SessionsSectionProps } from "../types/components";
 
 export default function SessionsSection({
   label,
