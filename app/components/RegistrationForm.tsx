@@ -357,18 +357,24 @@ export default function RegistrationForm() {
         </div>
 
         {/* Marketing Consent Checkbox */}
-        <label className="flex items-start gap-2.5 cursor-pointer mt-5">
-          <input
-            type="checkbox"
-            name="marketingConsent"
-            checked={formData.marketingConsent}
-            onChange={handleInputChange}
-            className="w-5 h-5 accent-dark-blue-accent cursor-pointer"
-          />
-          <span className="text-sm text-black leading-relaxed font-poppins">
-            I agree to receive marketing emails and communications from Hub71
-          </span>
-        </label>
+        <div className="mt-5">
+          <label className="flex items-start gap-2.5 cursor-pointer">
+            <input
+              type="checkbox"
+              name="marketingConsent"
+              checked={formData.marketingConsent}
+              onChange={handleInputChange}
+              onBlur={handleBlur}
+              className="w-5 h-5 accent-dark-blue-accent cursor-pointer"
+            />
+            <span className="text-sm text-black leading-relaxed font-poppins">
+              I agree to receive marketing emails and communications from Hub71 *
+            </span>
+          </label>
+          {errors.marketingConsent && (
+            <p className="text-red-500 text-xs mt-1">{errors.marketingConsent[0]}</p>
+          )}
+        </div>
 
         {/* Status Messages */}
         {submitStatus === "success" && (

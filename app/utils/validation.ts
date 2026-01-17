@@ -32,7 +32,9 @@ export const registrationSchema = z.object({
   hearAboutHub: z.string().optional(),
   interestedIn: z.string().optional(),
   country: z.string().optional(),
-  marketingConsent: z.boolean(),
+  marketingConsent: z.literal(true, {
+    error: "You must agree to receive marketing communications",
+  }),
 });
 
 export type RegistrationFormData = z.infer<typeof registrationSchema>;
