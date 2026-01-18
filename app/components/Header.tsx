@@ -69,8 +69,9 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.15 }}
+            aria-label={t.header.search}
           >
-            <IoSearch className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5.5 lg:h-5.5" color="#000" />
+            <IoSearch className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5.5 lg:h-5.5" color="#000" aria-hidden="true" />
           </motion.button>
 
           {/* Accessibility Icon - hidden on mobile */}
@@ -79,8 +80,9 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.15 }}
+            aria-label={t.header.accessibility}
           >
-            <IoAccessibility className="w-5 h-5 sm:w-6 sm:h-6 lg:w-6.5 lg:h-6.5" color="#000" />
+            <IoAccessibility className="w-5 h-5 sm:w-6 sm:h-6 lg:w-6.5 lg:h-6.5" color="#000" aria-hidden="true" />
           </motion.button>
 
           {/* Menu Button */}
@@ -89,8 +91,10 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.15 }}
+            aria-label={t.header.menu}
+            aria-expanded="false"
           >
-            <IoMenu className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7.5 lg:h-7.5" color="#FFF" />
+            <IoMenu className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7.5 lg:h-7.5" color="#FFF" aria-hidden="true" />
           </motion.button>
         </div>
       </div>

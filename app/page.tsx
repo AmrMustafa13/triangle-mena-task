@@ -1,8 +1,15 @@
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/Footer";
+import {
+  OrganizationSchema,
+  EventListSchema,
+  WebPageSchema,
+} from "./components/StructuredData";
 import { SessionsResponse } from "./types/session";
 import { formatSession } from "./utils/formatSession";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hub71.com";
 
 async function getSessions(): Promise<SessionsResponse> {
   const res = await fetch(
@@ -28,13 +35,18 @@ export default async function Home() {
   const previousSessions = data.sessions.previous.map(formatSession);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header />
-      <MainContent
-        upcomingSessions={upcomingSessions}
-        previousSessions={previousSessions}
-      />
-      <Footer />
-    </div>
+    <>
+      <OrganizationSchema siteUrl={siteUrl} />
+      <WebPageSchema siteUrl={siteUrl} />
+      <EventListSchema sessions={data.sessions.upcoming} siteUrl={siteUrl} />
+      <div className="min-h-screen flex flex-col bg-white">
+        <Header />
+        <MainContent
+          upcomingSessions={upcomingSessions}
+          previousSessions={previousSessions}
+        />
+        <Footer />
+      </div>
+    </>
   );
 }

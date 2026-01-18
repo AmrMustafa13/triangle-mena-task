@@ -70,7 +70,12 @@
     "reports": "REPORTS",
     "feedback": "FEEDBACK/SUGGESTION",
     "privacyNotice": "PRIVACY NOTICE",
-    "termsOfUse": "TERMS OF USE"
+    "termsOfUse": "TERMS OF USE",
+    "facebook": "Follow us on Facebook",
+    "instagram": "Follow us on Instagram",
+    "youtube": "Subscribe to our YouTube channel",
+    "linkedin": "Connect with us on LinkedIn",
+    "tiktok": "Follow us on TikTok"
   },
   "error": {
     "title": "Something went wrong",

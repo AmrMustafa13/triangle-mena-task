@@ -210,31 +210,32 @@ export default function Footer() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
+          <nav aria-label="Social media links" className="flex items-center gap-4 sm:gap-5 lg:gap-6">
             <motion.div
               whileHover={{ scale: 1.2, y: -2 }}
               transition={{ duration: 0.15 }}
             >
-              <Link href="#">
-                <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
+              <Link href="#" aria-label={t.footer.facebook}>
+                <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" aria-hidden="true" />
               </Link>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.2, y: -2 }}
               transition={{ duration: 0.15 }}
             >
-              <Link href="#">
-                <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
+              <Link href="#" aria-label={t.footer.instagram}>
+                <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" aria-hidden="true" />
               </Link>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.2, y: -2 }}
               transition={{ duration: 0.15 }}
             >
-              <Link href="#">
+              <Link href="#" aria-label={t.footer.youtube}>
                 <FaYoutube
                   className="w-4 h-4 sm:w-5 sm:h-5"
                   color="var(--dark-blue)"
+                  aria-hidden="true"
                 />
               </Link>
             </motion.div>
@@ -242,10 +243,11 @@ export default function Footer() {
               whileHover={{ scale: 1.2, y: -2 }}
               transition={{ duration: 0.15 }}
             >
-              <Link href="#">
+              <Link href="#" aria-label={t.footer.linkedin}>
                 <FaLinkedinIn
                   className="w-4 h-4 sm:w-5 sm:h-5"
                   color="var(--dark-blue)"
+                  aria-hidden="true"
                 />
               </Link>
             </motion.div>
@@ -253,14 +255,15 @@ export default function Footer() {
               whileHover={{ scale: 1.2, y: -2 }}
               transition={{ duration: 0.15 }}
             >
-              <Link href="#">
+              <Link href="#" aria-label={t.footer.tiktok}>
                 <FaTiktok
                   className="w-4 h-4 sm:w-5 sm:h-5"
                   color="var(--dark-blue)"
+                  aria-hidden="true"
                 />
               </Link>
             </motion.div>
-          </div>
+          </nav>
         </div>
       </div>
     </motion.footer>

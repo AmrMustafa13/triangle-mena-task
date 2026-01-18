@@ -61,9 +61,84 @@ const rocGroteskWide = localFont({
   variable: "--font-roc-grotesk-wide",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hub71.com";
+
 export const metadata: Metadata = {
-  title: "Hub71 - Sessions",
-  description: "Hub71 Info Sessions - A Deep Dive into the Hub71 Ecosystem",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Hub71 Sessions | Abu Dhabi's Global Tech Ecosystem",
+    template: "%s | Hub71",
+  },
+  description:
+    "Join Hub71 Info Sessions to explore Abu Dhabi's leading tech ecosystem. Connect with startups, investors, and industry experts. Register for upcoming sessions and access recordings.",
+  keywords: [
+    "Hub71",
+    "Abu Dhabi",
+    "tech ecosystem",
+    "startup",
+    "innovation",
+    "ADGM",
+    "venture capital",
+    "tech hub",
+    "UAE startups",
+    "info sessions",
+  ],
+  authors: [{ name: "Hub71" }],
+  creator: "Hub71",
+  publisher: "Hub71",
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "ar_AE",
+    url: siteUrl,
+    siteName: "Hub71",
+    title: "Hub71 Sessions | Abu Dhabi's Global Tech Ecosystem",
+    description:
+      "Join Hub71 Info Sessions to explore Abu Dhabi's leading tech ecosystem. Connect with startups, investors, and industry experts.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Hub71 - Abu Dhabi's Global Tech Ecosystem",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hub71 Sessions | Abu Dhabi's Global Tech Ecosystem",
+    description:
+      "Join Hub71 Info Sessions to explore Abu Dhabi's leading tech ecosystem. Connect with startups, investors, and industry experts.",
+    images: ["/og-image.png"],
+    creator: "@Hub71AD",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+    languages: {
+      "en-US": `${siteUrl}/en`,
+      "ar-AE": `${siteUrl}/ar`,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
