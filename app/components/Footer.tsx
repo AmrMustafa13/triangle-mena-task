@@ -42,48 +42,51 @@ export default function Footer() {
     { label: "INVESTORS", href: "#" },
     { label: "LATEST NEWS", href: "#" },
     { label: "REPORTS", href: "#" },
-    { label: "FEEDBACK/SUGGESTION", href: "#" },
+    { label: "FEEDBACK / SUGGESTION", href: "#" },
   ];
 
   return (
-    <footer className="bg-light-gray-bg pt-14 pb-5.5">
-      <div className="max-w-350 mx-auto px-6 lg:px-12">
+    <footer className="bg-light-gray-bg pt-8 sm:pt-10 lg:pt-14 pb-5.5">
+      <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-12">
         {/* Main Footer Content */}
-        <div className="flex justify-between gap-16">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
           {/* Left Section - Logo and Newsletter */}
-          <div>
+          <div className="w-full lg:w-auto">
             <Image
               src="/logo.svg"
               alt="Hub71 Logo"
               width={101}
               height={29}
-              className="object-contain"
+              className="object-contain w-20 sm:w-24 lg:w-25.25"
             />
             <Image
               src="/in-touch.svg"
               alt="Get in Touch"
               width={472}
               height={152}
-              className="object-contain mb-5 mt-12.5"
+              className="object-contain mb-5 mt-6 sm:mt-8 lg:mt-12.5 w-full max-w-xs sm:max-w-sm lg:max-w-118"
             />
 
-            <div className="mb-15">
-              <p className="text-black text-xl font-bold tracking-wider mb-5">
+            <div className="mb-8 lg:mb-15">
+              <p className="text-black text-base sm:text-lg lg:text-xl font-bold tracking-wider mb-4 sm:mb-5">
                 SUBSCRIBE
                 <br />
                 TO OUR NEWSLETTER
               </p>
-              <form onSubmit={handleSubscribe} className="flex">
+              <form
+                onSubmit={handleSubscribe}
+                className="flex flex-col sm:flex-row"
+              >
                 <input
                   type="email"
                   placeholder="Your Mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 p-5 text-sm border border-black border-r-0 rounded-l outline-none bg-light-gray-bg font-poppins"
+                  className="flex-1 p-3 sm:p-4 lg:p-5 text-sm border border-black sm:border-r-0 rounded-t sm:rounded-l sm:rounded-tr-none outline-none bg-light-gray-bg font-poppins"
                 />
                 <button
                   type="submit"
-                  className="p-5 bg-light-gray-bg border border-l-0 border-black flex items-center gap-1 text-sm font-bold text-black"
+                  className="p-3 sm:p-4 lg:p-5 bg-light-gray-bg border sm:border-l-0 border-black flex items-center justify-center gap-1 text-sm font-bold text-black rounded-b sm:rounded-r sm:rounded-bl-none"
                 >
                   SUBSCRIBE
                   <MdOutlineKeyboardArrowRight size={20} color="#000" />
@@ -91,10 +94,12 @@ export default function Footer() {
               </form>
             </div>
           </div>
-          <div className="flex justify-between gap-16 h-fit mt-16">
+
+          {/* Navigation Columns */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-16 lg:mt-16">
             {/* Column 1 */}
             <div
-              className="space-y-5 pl-5"
+              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5"
               style={{
                 borderLeft: "1px solid",
                 borderImageSource:
@@ -106,7 +111,7 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block text-sm font-medium text-black"
+                  className="block text-xs sm:text-sm font-medium text-black"
                 >
                   {link.label}
                 </Link>
@@ -115,7 +120,7 @@ export default function Footer() {
 
             {/* Column 2 */}
             <div
-              className="space-y-5 pl-5"
+              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5"
               style={{
                 borderLeft: "1px solid",
                 borderImageSource:
@@ -127,7 +132,7 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block text-sm font-medium text-black"
+                  className="block text-xs sm:text-sm font-medium text-black"
                 >
                   {link.label}
                 </Link>
@@ -136,7 +141,7 @@ export default function Footer() {
 
             {/* Column 3 */}
             <div
-              className="space-y-5 pl-5"
+              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5 col-span-2 sm:col-span-1"
               style={{
                 borderLeft: "1px solid",
                 borderImageSource:
@@ -148,7 +153,7 @@ export default function Footer() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block text-sm font-medium text-black"
+                  className="block text-xs sm:text-sm font-medium text-black"
                 >
                   {link.label}
                 </Link>
@@ -159,7 +164,7 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div
-          className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="pt-6 mt-6 lg:mt-0 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{
             borderTop: "1px solid",
             borderImageSource:
@@ -167,7 +172,7 @@ export default function Footer() {
             borderImageSlice: 1,
           }}
         >
-          <div className="flex items-center gap-9">
+          <div className="flex items-center gap-4 sm:gap-6 lg:gap-9">
             <Link href="#" className="text-xs text-black">
               PRIVACY NOTICE
             </Link>
@@ -177,21 +182,30 @@ export default function Footer() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
             <Link href="#">
-              <FaFacebookF size={20} color="#000" />
+              <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
             </Link>
             <Link href="#">
-              <FaInstagram size={20} color="#000" />
+              <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
             </Link>
             <Link href="#">
-              <FaYoutube size={20} color="var(--dark-blue)" />
+              <FaYoutube
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                color="var(--dark-blue)"
+              />
             </Link>
             <Link href="#">
-              <FaLinkedinIn size={20} color="var(--dark-blue)" />
+              <FaLinkedinIn
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                color="var(--dark-blue)"
+              />
             </Link>
             <Link href="#">
-              <FaTiktok size={20} color="var(--dark-blue)" />
+              <FaTiktok
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                color="var(--dark-blue)"
+              />
             </Link>
           </div>
         </div>

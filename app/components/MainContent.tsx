@@ -7,10 +7,10 @@ export default function MainContent({
   previousSessions,
 }: MainContentProps) {
   return (
-    <main className="flex-1 max-w-350 mx-auto w-full px-6 lg:px-12 pb-26 pt-12">
-      <div className="flex justify-between gap-9.5">
+    <main className="flex-1 max-w-350 mx-auto w-full px-4 sm:px-6 lg:px-12 pb-12 sm:pb-16 lg:pb-26 pt-6 sm:pt-8 lg:pt-12">
+      <div className="flex flex-col xl:flex-row justify-between gap-6 sm:gap-8 lg:gap-9.5">
         {/* Left Column - Sessions */}
-        <div className="mt-16">
+        <div className="mt-6 sm:mt-10 lg:mt-16 order-2 lg:order-1">
           <SessionsSection
             label="KEEP UPDATED"
             title="Upcoming Sessions"
@@ -33,7 +33,7 @@ export default function MainContent({
         </div>
 
         {/* Right Column - Registration Form */}
-        <div>
+        <div className="order-1 lg:order-2 lg:shrink-0">
           <RegistrationForm />
         </div>
       </div>

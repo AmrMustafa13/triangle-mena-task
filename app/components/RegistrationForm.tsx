@@ -159,25 +159,25 @@ export default function RegistrationForm() {
   };
 
   const inputClasses =
-    "w-full px-4 py-3.5 text-sm border border-border-gray outline-none bg-light-gray-bg-alpha font-poppins";
+    "w-full px-3 sm:px-4 py-3 sm:py-3.5 text-xs sm:text-sm border border-border-gray outline-none bg-light-gray-bg-alpha font-poppins";
   const selectClasses =
-    "w-full px-4 py-3.5 text-sm border border-border-gray outline-none bg-light-gray-bg-alpha text-gray-400 cursor-pointer font-poppins";
+    "w-full px-3 sm:px-4 py-3 sm:py-3.5 text-xs sm:text-sm border border-border-gray outline-none bg-light-gray-bg-alpha text-gray-400 cursor-pointer font-poppins";
 
   return (
-    <div className="bg-light-gray-bg-alpha py-14 px-8">
+    <div className="bg-light-gray-bg-alpha py-8 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="mb-6">
-        <p className="text-accent-blue text-sm font-bold mb-2">
+      <div className="mb-4 sm:mb-6">
+        <p className="text-accent-blue text-xs sm:text-sm font-bold mb-1.5 sm:mb-2">
           DON&apos;T MISS UPCOMING SESSIONS
         </p>
-        <h2 className="text-black text-4xl font-bold leading-tight">
+        <h2 className="text-black text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
           Register
           <br />
           Your Interest Now
         </h2>
       </div>
 
-      <div className="h-px bg-border-gray my-6"></div>
+      <div className="h-px bg-border-gray my-4 sm:my-6"></div>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-2.5">
@@ -357,17 +357,17 @@ export default function RegistrationForm() {
         </div>
 
         {/* Marketing Consent Checkbox */}
-        <div className="mt-5">
-          <label className="flex items-start gap-2.5 cursor-pointer">
+        <div className="mt-4 sm:mt-5">
+          <label className="flex items-start gap-2 sm:gap-2.5 cursor-pointer">
             <input
               type="checkbox"
               name="marketingConsent"
               checked={formData.marketingConsent}
               onChange={handleInputChange}
               onBlur={handleBlur}
-              className="w-5 h-5 accent-dark-blue-accent cursor-pointer"
+              className="w-4 h-4 sm:w-5 sm:h-5 accent-dark-blue-accent cursor-pointer mt-0.5"
             />
-            <span className="text-sm text-black leading-relaxed font-poppins">
+            <span className="text-xs sm:text-sm text-black leading-relaxed font-poppins">
               I agree to receive marketing emails and communications from Hub71 *
             </span>
           </label>
@@ -378,23 +378,23 @@ export default function RegistrationForm() {
 
         {/* Status Messages */}
         {submitStatus === "success" && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded text-sm">
+          <div className="bg-green-50 border border-green-200 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded text-xs sm:text-sm">
             Thank you! Your registration has been submitted successfully.
           </div>
         )}
 
         {submitStatus === "error" && Object.keys(errors).length === 0 && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded text-sm">
+          <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded text-xs sm:text-sm">
             Something went wrong. Please try again.
           </div>
         )}
 
         {/* Submit and Clear */}
-        <div className="flex items-center gap-32 mt-6">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 lg:gap-32 mt-5 sm:mt-6">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-1 bg-accent-blue text-white py-5 px-20 text-sm font-bold"
+            className="flex-1 bg-accent-blue text-white py-3.5 sm:py-4 lg:py-5 px-6 sm:px-12 lg:px-20 text-xs sm:text-sm font-bold"
           >
             {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
           </button>
@@ -402,9 +402,9 @@ export default function RegistrationForm() {
             type="button"
             onClick={clearForm}
             disabled={isSubmitting}
-            className="flex items-center gap-2.5 text-black text-sm text-nowrap font-poppins"
+            className="flex items-center justify-center sm:justify-start gap-2 sm:gap-2.5 text-black text-xs sm:text-sm whitespace-nowrap font-poppins py-2 sm:py-0"
           >
-            <VscDebugRestart size={20} color="var(--dark-blue-accent)" className="rotate-45" />
+            <VscDebugRestart className="w-4 h-4 sm:w-5 sm:h-5 rotate-45" color="var(--dark-blue-accent)" />
             Clear Form
           </button>
         </div>

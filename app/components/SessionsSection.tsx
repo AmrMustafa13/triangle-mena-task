@@ -13,16 +13,16 @@ export default function SessionsSection({
   const Heading = headingLevel;
 
   return (
-    <section className={headingLevel === "h1" ? "mb-20" : ""}>
-      <p className="text-accent-blue text-sm font-bold mb-2.5">{label}</p>
-      <Heading className="text-black text-4xl font-bold mb-7.5">{title}</Heading>
+    <section className={headingLevel === "h1" ? "mb-10 sm:mb-14 lg:mb-20" : ""}>
+      <p className="text-accent-blue text-xs sm:text-sm font-bold mb-1.5 sm:mb-2 lg:mb-2.5">{label}</p>
+      <Heading className="text-black text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-5 lg:mb-7.5">{title}</Heading>
 
       {sessions.length === 0 ? (
-        <div className="bg-light-gray-bg-alpha px-6 py-8 text-center">
-          <p className="text-gray-500">{emptyMessage}</p>
+        <div className="bg-light-gray-bg-alpha px-4 sm:px-6 py-6 sm:py-8 text-center">
+          <p className="text-gray-500 text-sm sm:text-base">{emptyMessage}</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {sessions.map((session, index) => (
             <SessionCard
               key={`${buttonType}-${index}`}
