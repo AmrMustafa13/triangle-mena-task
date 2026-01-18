@@ -4,6 +4,19 @@ import { useState, useCallback } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
 import { FormData, FormErrors, SubmitStatus } from "../types/form";
 import { validateField, validateForm, RegistrationFormData } from "../utils/validation";
+import { motion } from "framer-motion";
+
+const formContainerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -164,7 +177,13 @@ export default function RegistrationForm() {
     "w-full px-3 sm:px-4 py-3 sm:py-3.5 text-xs sm:text-sm border border-border-gray outline-none bg-light-gray-bg-alpha text-gray-400 cursor-pointer font-poppins";
 
   return (
-    <div className="bg-light-gray-bg-alpha py-8 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={formContainerVariants}
+      className="bg-light-gray-bg-alpha py-8 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8"
+    >
       {/* Header */}
       <div className="mb-4 sm:mb-6">
         <p className="text-accent-blue text-xs sm:text-sm font-bold mb-1.5 sm:mb-2">
@@ -391,24 +410,30 @@ export default function RegistrationForm() {
 
         {/* Submit and Clear */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-8 lg:gap-32 mt-5 sm:mt-6">
-          <button
+          <motion.button
             type="submit"
             disabled={isSubmitting}
             className="flex-1 bg-accent-blue text-white py-3.5 sm:py-4 lg:py-5 px-6 sm:px-12 lg:px-20 text-xs sm:text-sm font-bold"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.15 }}
           >
             {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={clearForm}
             disabled={isSubmitting}
             className="flex items-center justify-center sm:justify-start gap-2 sm:gap-2.5 text-black text-xs sm:text-sm whitespace-nowrap font-poppins py-2 sm:py-0"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.15 }}
           >
             <VscDebugRestart className="w-4 h-4 sm:w-5 sm:h-5 rotate-45" color="var(--dark-blue-accent)" />
             Clear Form
-          </button>
+          </motion.button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }

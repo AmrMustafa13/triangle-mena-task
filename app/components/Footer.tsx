@@ -11,6 +11,19 @@ import {
   FaTiktok,
 } from "react-icons/fa";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { motion } from "framer-motion";
+
+const footerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut" as const,
+    },
+  },
+};
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -46,7 +59,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-light-gray-bg pt-8 sm:pt-10 lg:pt-14 pb-5.5">
+    <motion.footer
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={footerVariants}
+      className="bg-light-gray-bg pt-8 sm:pt-10 lg:pt-14 pb-5.5"
+    >
       <div className="max-w-350 mx-auto px-4 sm:px-6 lg:px-12">
         {/* Main Footer Content */}
         <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
@@ -84,13 +103,16 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 p-3 sm:p-4 lg:p-5 text-sm border border-black sm:border-r-0 rounded-t sm:rounded-l sm:rounded-tr-none outline-none bg-light-gray-bg font-poppins"
                 />
-                <button
+                <motion.button
                   type="submit"
                   className="p-3 sm:p-4 lg:p-5 bg-light-gray-bg border sm:border-l-0 border-black flex items-center justify-center gap-1 text-sm font-bold text-black rounded-b sm:rounded-r sm:rounded-bl-none"
+                  whileHover={{ scale: 1.02, backgroundColor: "#e5e5e5" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.15 }}
                 >
                   SUBSCRIBE
                   <MdOutlineKeyboardArrowRight size={20} color="#000" />
-                </button>
+                </motion.button>
               </form>
             </div>
           </div>
@@ -183,33 +205,43 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
-            <Link href="#">
-              <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
-            </Link>
-            <Link href="#">
-              <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
-            </Link>
-            <Link href="#">
-              <FaYoutube
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                color="var(--dark-blue)"
-              />
-            </Link>
-            <Link href="#">
-              <FaLinkedinIn
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                color="var(--dark-blue)"
-              />
-            </Link>
-            <Link href="#">
-              <FaTiktok
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                color="var(--dark-blue)"
-              />
-            </Link>
+            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+              <Link href="#">
+                <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+              <Link href="#">
+                <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+              <Link href="#">
+                <FaYoutube
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  color="var(--dark-blue)"
+                />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+              <Link href="#">
+                <FaLinkedinIn
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  color="var(--dark-blue)"
+                />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+              <Link href="#">
+                <FaTiktok
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  color="var(--dark-blue)"
+                />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
