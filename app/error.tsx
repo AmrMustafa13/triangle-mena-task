@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { useLanguage } from "./i18n/LanguageContext";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -10,6 +11,8 @@ interface ErrorProps {
 }
 
 export default function Error({ error, reset }: ErrorProps) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     console.error("Error:", error);
   }, [error]);
@@ -22,16 +25,16 @@ export default function Error({ error, reset }: ErrorProps) {
           <div className="bg-light-gray-bg-alpha p-6 sm:p-8 lg:p-12 text-center max-w-md sm:max-w-lg w-full mx-4">
             <div className="text-btn-register text-4xl sm:text-5xl lg:text-6xl mb-4 sm:mb-6">!</div>
             <h1 className="text-black text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
-              Something went wrong
+              {t.error.title}
             </h1>
             <p className="text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">
-              We couldn&apos;t load the sessions. Please try again later.
+              {t.error.message}
             </p>
             <button
               onClick={reset}
               className="bg-accent-blue text-white py-3 sm:py-4 px-6 sm:px-8 text-xs sm:text-sm font-bold hover:opacity-90 transition-opacity w-full sm:w-auto"
             >
-              TRY AGAIN
+              {t.error.tryAgain}
             </button>
           </div>
         </div>

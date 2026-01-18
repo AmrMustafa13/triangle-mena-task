@@ -4,8 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { IoSearch, IoAccessibility, IoMenu } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Header() {
+  const { locale, setLocale, t } = useLanguage();
+
+  const toggleLanguage = () => {
+    setLocale(locale === "en" ? "ar" : "en");
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -38,20 +45,22 @@ export default function Header() {
           >
             <Image
               src="/nav-button.png"
-              alt="Impact Report Icon"
+              alt={t.header.impactReport}
               width={134}
               height={55}
               className="object-contain rounded-lg shadow-[0px_0px_20px_3px_var(--shadow-color)] w-24 lg:w-33.5"
             />
           </motion.button>
-          {/* Arabic Toggle */}
+          {/* Language Toggle */}
           <motion.button
+            onClick={toggleLanguage}
             className="w-10 h-10 sm:w-12 sm:h-12 lg:w-13.75 lg:h-13.75 text-xs sm:text-sm lg:text-base text-white bg-primary-blue rounded-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.15 }}
+            aria-label={locale === "en" ? "Switch to Arabic" : "Switch to English"}
           >
-            عربي
+            {t.header.arabic}
           </motion.button>
 
           {/* Search Icon - hidden on small mobile */}

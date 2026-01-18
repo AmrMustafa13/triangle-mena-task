@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { motion } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const footerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,7 @@ const footerVariants = {
 };
 
 export default function Footer() {
+  const { t, isRTL } = useLanguage();
   const [email, setEmail] = useState("");
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -35,27 +37,27 @@ export default function Footer() {
   };
 
   const column1Links = [
-    { label: "I AM A STARTUP", href: "#" },
-    { label: "DISCOVER HUB71+", href: "#" },
-    { label: "OUR PARTNERS", href: "#" },
-    { label: "EVENTS", href: "#" },
-    { label: "ADGM TECH LICENSE", href: "#" },
+    { label: t.footer.iAmStartup, href: "#" },
+    { label: t.footer.discoverHub, href: "#" },
+    { label: t.footer.ourPartners, href: "#" },
+    { label: t.footer.events, href: "#" },
+    { label: t.footer.adgmLicense, href: "#" },
   ];
 
   const column2Links = [
-    { label: "I WANT TO INVEST", href: "#" },
-    { label: "STARTUPS", href: "#" },
-    { label: "STARTUP CAREERS", href: "#" },
-    { label: "PROGRAMS", href: "#" },
-    { label: "CONTACT US", href: "#" },
+    { label: t.footer.wantToInvest, href: "#" },
+    { label: t.footer.startups, href: "#" },
+    { label: t.footer.startupCareers, href: "#" },
+    { label: t.footer.programs, href: "#" },
+    { label: t.footer.contactUs, href: "#" },
   ];
 
   const column3Links = [
-    { label: "WHO WE ARE", href: "#" },
-    { label: "INVESTORS", href: "#" },
-    { label: "LATEST NEWS", href: "#" },
-    { label: "REPORTS", href: "#" },
-    { label: "FEEDBACK / SUGGESTION", href: "#" },
+    { label: t.footer.whoWeAre, href: "#" },
+    { label: t.footer.investors, href: "#" },
+    { label: t.footer.latestNews, href: "#" },
+    { label: t.footer.reports, href: "#" },
+    { label: t.footer.feedback, href: "#" },
   ];
 
   return (
@@ -88,9 +90,9 @@ export default function Footer() {
 
             <div className="mb-8 lg:mb-15">
               <p className="text-black text-base sm:text-lg lg:text-xl font-bold tracking-wider mb-4 sm:mb-5">
-                SUBSCRIBE
+                {t.footer.subscribe}
                 <br />
-                TO OUR NEWSLETTER
+                {t.footer.toNewsletter}
               </p>
               <form
                 onSubmit={handleSubscribe}
@@ -98,7 +100,7 @@ export default function Footer() {
               >
                 <input
                   type="email"
-                  placeholder="Your Mail"
+                  placeholder={t.footer.yourMail}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 p-3 sm:p-4 lg:p-5 text-sm border border-black sm:border-r-0 rounded-t sm:rounded-l sm:rounded-tr-none outline-none bg-light-gray-bg font-poppins"
@@ -110,8 +112,12 @@ export default function Footer() {
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.15 }}
                 >
-                  SUBSCRIBE
-                  <MdOutlineKeyboardArrowRight size={20} color="#000" />
+                  {t.footer.subscribeBtn}
+                  <MdOutlineKeyboardArrowRight
+                    size={20}
+                    color="#000"
+                    className={isRTL ? "rotate-180" : ""}
+                  />
                 </motion.button>
               </form>
             </div>
@@ -121,9 +127,9 @@ export default function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-16 lg:mt-16">
             {/* Column 1 */}
             <div
-              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5"
+              className={`space-y-3 sm:space-y-4 lg:space-y-5 h-fit ${isRTL ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"}`}
               style={{
-                borderLeft: "1px solid",
+                [isRTL ? "borderRight" : "borderLeft"]: "1px solid",
                 borderImageSource:
                   "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
                 borderImageSlice: 1,
@@ -142,9 +148,9 @@ export default function Footer() {
 
             {/* Column 2 */}
             <div
-              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5"
+              className={`space-y-3 sm:space-y-4 lg:space-y-5 h-fit ${isRTL ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"}`}
               style={{
-                borderLeft: "1px solid",
+                [isRTL ? "borderRight" : "borderLeft"]: "1px solid",
                 borderImageSource:
                   "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
                 borderImageSlice: 1,
@@ -163,9 +169,9 @@ export default function Footer() {
 
             {/* Column 3 */}
             <div
-              className="space-y-3 sm:space-y-4 lg:space-y-5 pl-4 sm:pl-5 col-span-2 sm:col-span-1"
+              className={`space-y-3 sm:space-y-4 lg:space-y-5 h-fit col-span-2 sm:col-span-1 ${isRTL ? "pr-4 sm:pr-5" : "pl-4 sm:pl-5"}`}
               style={{
-                borderLeft: "1px solid",
+                [isRTL ? "borderRight" : "borderLeft"]: "1px solid",
                 borderImageSource:
                   "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 50.21%, rgba(0, 0, 0, 0) 100%)",
                 borderImageSlice: 1,
@@ -196,26 +202,35 @@ export default function Footer() {
         >
           <div className="flex items-center gap-4 sm:gap-6 lg:gap-9">
             <Link href="#" className="text-xs text-black">
-              PRIVACY NOTICE
+              {t.footer.privacyNotice}
             </Link>
             <Link href="#" className="text-xs text-black">
-              TERMS OF USE
+              {t.footer.termsOfUse}
             </Link>
           </div>
 
           {/* Social Icons */}
           <div className="flex items-center gap-4 sm:gap-5 lg:gap-6">
-            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+            <motion.div
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ duration: 0.15 }}
+            >
               <Link href="#">
                 <FaFacebookF className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+            <motion.div
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ duration: 0.15 }}
+            >
               <Link href="#">
                 <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5" color="#000" />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+            <motion.div
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ duration: 0.15 }}
+            >
               <Link href="#">
                 <FaYoutube
                   className="w-4 h-4 sm:w-5 sm:h-5"
@@ -223,7 +238,10 @@ export default function Footer() {
                 />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+            <motion.div
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ duration: 0.15 }}
+            >
               <Link href="#">
                 <FaLinkedinIn
                   className="w-4 h-4 sm:w-5 sm:h-5"
@@ -231,7 +249,10 @@ export default function Footer() {
                 />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.2, y: -2 }} transition={{ duration: 0.15 }}>
+            <motion.div
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ duration: 0.15 }}
+            >
               <Link href="#">
                 <FaTiktok
                   className="w-4 h-4 sm:w-5 sm:h-5"

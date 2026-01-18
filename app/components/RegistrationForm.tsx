@@ -5,6 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { FormData, FormErrors, SubmitStatus } from "../types/form";
 import { validateField, validateForm, RegistrationFormData } from "../utils/validation";
 import { motion } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const formContainerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -19,6 +20,7 @@ const formContainerVariants = {
 };
 
 export default function RegistrationForm() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -187,12 +189,12 @@ export default function RegistrationForm() {
       {/* Header */}
       <div className="mb-4 sm:mb-6">
         <p className="text-accent-blue text-xs sm:text-sm font-bold mb-1.5 sm:mb-2">
-          DON&apos;T MISS UPCOMING SESSIONS
+          {t.form.dontMiss}
         </p>
         <h2 className="text-black text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-          Register
+          {t.form.registerTitle}
           <br />
-          Your Interest Now
+          {t.form.registerSubtitle}
         </h2>
       </div>
 
@@ -204,7 +206,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="firstName"
-            placeholder="First Name *"
+            placeholder={t.form.firstName}
             value={formData.firstName}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -219,7 +221,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="lastName"
-            placeholder="Last Name *"
+            placeholder={t.form.lastName}
             value={formData.lastName}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -234,7 +236,7 @@ export default function RegistrationForm() {
           <input
             type="email"
             name="email"
-            placeholder="Email Address *"
+            placeholder={t.form.email}
             value={formData.email}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -249,7 +251,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="companyName"
-            placeholder="Company Name *"
+            placeholder={t.form.companyName}
             value={formData.companyName}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -264,7 +266,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="jobTitle"
-            placeholder="Job Title *"
+            placeholder={t.form.jobTitle}
             value={formData.jobTitle}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -279,7 +281,7 @@ export default function RegistrationForm() {
           <input
             type="url"
             name="companyWebsite"
-            placeholder="Company Website *"
+            placeholder={t.form.companyWebsite}
             value={formData.companyWebsite}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -301,10 +303,10 @@ export default function RegistrationForm() {
             className={`${selectClasses} ${errors.gender ? "border-red-500" : ""}`}
           >
             <option value="" disabled>
-              Gender *
+              {t.form.gender}
             </option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="male">{t.form.genderMale}</option>
+            <option value="female">{t.form.genderFemale}</option>
           </select>
           {errors.gender && (
             <p className="text-red-500 text-xs mt-1">{errors.gender[0]}</p>
@@ -320,14 +322,14 @@ export default function RegistrationForm() {
             className={`${selectClasses} ${errors.hearAboutHub ? "border-red-500" : ""}`}
           >
             <option value="" disabled>
-              How did you hear about Hub71
+              {t.form.howHeard}
             </option>
-            <option value="Social Media">Social Media</option>
-            <option value="Friend/Colleague">Friend/Colleague</option>
-            <option value="Event">Event</option>
-            <option value="Search Engine">Search Engine</option>
-            <option value="News Article">News Article</option>
-            <option value="Other">Other</option>
+            <option value="Social Media">{t.form.howHeardSocialMedia}</option>
+            <option value="Friend/Colleague">{t.form.howHeardFriend}</option>
+            <option value="Event">{t.form.howHeardEvent}</option>
+            <option value="Search Engine">{t.form.howHeardSearch}</option>
+            <option value="News Article">{t.form.howHeardNews}</option>
+            <option value="Other">{t.form.howHeardOther}</option>
           </select>
           {errors.hearAboutHub && (
             <p className="text-red-500 text-xs mt-1">
@@ -340,7 +342,7 @@ export default function RegistrationForm() {
           <input
             type="text"
             name="interestedIn"
-            placeholder="Interested In"
+            placeholder={t.form.interestedIn}
             value={formData.interestedIn}
             onChange={handleInputChange}
             onBlur={handleBlur}
@@ -362,13 +364,13 @@ export default function RegistrationForm() {
             className={`${selectClasses} ${errors.country ? "border-red-500" : ""}`}
           >
             <option value="" disabled>
-              Country of residence
+              {t.form.country}
             </option>
-            <option value="UAE">United Arab Emirates</option>
-            <option value="Saudi Arabia">Saudi Arabia</option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Other">Other</option>
+            <option value="UAE">{t.form.countryUAE}</option>
+            <option value="Saudi Arabia">{t.form.countrySaudi}</option>
+            <option value="United States">{t.form.countryUS}</option>
+            <option value="United Kingdom">{t.form.countryUK}</option>
+            <option value="Other">{t.form.countryOther}</option>
           </select>
           {errors.country && (
             <p className="text-red-500 text-xs mt-1">{errors.country[0]}</p>
@@ -387,7 +389,7 @@ export default function RegistrationForm() {
               className="w-4 h-4 sm:w-5 sm:h-5 accent-dark-blue-accent cursor-pointer mt-0.5"
             />
             <span className="text-xs sm:text-sm text-black leading-relaxed font-poppins">
-              I agree to receive marketing emails and communications from Hub71 *
+              {t.form.marketingConsent}
             </span>
           </label>
           {errors.marketingConsent && (
@@ -398,13 +400,13 @@ export default function RegistrationForm() {
         {/* Status Messages */}
         {submitStatus === "success" && (
           <div className="bg-green-50 border border-green-200 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded text-xs sm:text-sm">
-            Thank you! Your registration has been submitted successfully.
+            {t.form.successMessage}
           </div>
         )}
 
         {submitStatus === "error" && Object.keys(errors).length === 0 && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded text-xs sm:text-sm">
-            Something went wrong. Please try again.
+            {t.form.errorMessage}
           </div>
         )}
 
@@ -418,7 +420,7 @@ export default function RegistrationForm() {
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15 }}
           >
-            {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
+            {isSubmitting ? t.form.submitting : t.form.submit}
           </motion.button>
           <motion.button
             type="button"
@@ -430,7 +432,7 @@ export default function RegistrationForm() {
             transition={{ duration: 0.15 }}
           >
             <VscDebugRestart className="w-4 h-4 sm:w-5 sm:h-5 rotate-45" color="var(--dark-blue-accent)" />
-            Clear Form
+            {t.form.clearForm}
           </motion.button>
         </div>
       </form>

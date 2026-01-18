@@ -97,3 +97,72 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
 }
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+[dir="rtl"] .font-poppins {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* RTL specific overrides */
+[dir="rtl"] .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .space-x-4 > * + * {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* RTL border radius adjustments */
+[dir="rtl"] .rounded-l {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+[dir="rtl"] .rounded-r {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+[dir="rtl"] .sm\:rounded-l {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+[dir="rtl"] .sm\:rounded-r {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+[dir="rtl"] .sm\:rounded-tr-none {
+  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 0;
+}
+
+[dir="rtl"] .sm\:rounded-bl-none {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0;
+}
+
+/* RTL border adjustments for newsletter form */
+[dir="rtl"] .sm\:border-r-0 {
+  border-right-width: 1px;
+  border-left-width: 0;
+}
+
+[dir="rtl"] .sm\:border-l-0 {
+  border-left-width: 1px;
+  border-right-width: 0;
+}
+
+/* RTL text alignment */
+[dir="rtl"] input,
+[dir="rtl"] select,
+[dir="rtl"] textarea {
+  text-align: right;
+}
+
+[dir="rtl"] input::placeholder {
+  text-align: right;
+}
