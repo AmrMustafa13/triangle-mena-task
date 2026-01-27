@@ -97,116 +97,119 @@ const ProgrammeCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`relative bg-white rounded-lg border border-gray-200 shadow-sm ${
-        isSpecialised ? "ml-12" : ""
+      className={`relative h-[201px] bg-[#F5F7FF] border border-[#D5DAEB] ${
+        isSpecialised ? "ml-[125px]" : ""
       }`}
     >
-      <div className="p-6">
-        {/* Expand button - top right */}
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="absolute top-4 right-4 w-7 h-7 bg-hub71-green text-white rounded flex items-center justify-center hover:bg-green-600 transition-colors text-sm font-bold"
-        >
-          {isExpanded ? "−" : "+"}
-        </button>
-
-        {/* Programme type label */}
-        {isSpecialised && (
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-hub71-green">
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <span className="text-hub71-green text-[11px] font-medium tracking-wide">
-              Specialised programme
-            </span>
-          </div>
-        )}
-
-        {programme.type === "sector-specific" && (
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-hub71-green">
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <span className="text-hub71-green text-[11px] font-medium tracking-wide">
-              Sector-specific programme
-            </span>
-          </div>
-        )}
-
-        {/* Programme name */}
-        <h3
-          className={`font-bold text-dark-blue mb-3 ${
-            isAccess || isGeneral ? "text-2xl" : "text-base tracking-widest"
-          }`}
-        >
-          {programme.name}
-        </h3>
-
-        {/* Chevrons for Access card */}
-        {isAccess && (
-          <div className="flex flex-col items-start mb-4">
-            <svg
-              className="w-5 h-5 text-gray-300"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <svg
-              className="w-5 h-5 text-gray-300 -mt-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <svg
-              className="w-5 h-5 text-gray-300 -mt-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-        )}
-
-        {/* Action buttons */}
-        <div className="flex items-center gap-3">
-          {programme.hasApplyButton && (
-            <button className="bg-hub71-green text-white text-[11px] font-bold px-4 py-2 rounded hover:bg-green-600 transition-colors tracking-wide">
-              APPLY NOW
-            </button>
-          )}
-          <button className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-gray-50 transition-colors text-gray-400">
-            +
+      <div className="p-6 h-full flex justify-between items-center gap-6">
+        {/* Left side - Labels, Name, Buttons */}
+        <div className="flex-1 flex flex-col justify-center">
+          {/* Expand button - top right */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="absolute top-4 right-4 w-7 h-7 bg-hub71-green text-white rounded flex items-center justify-center hover:bg-green-600 transition-colors text-sm font-bold"
+          >
+            {isExpanded ? "−" : "+"}
           </button>
+
+          {/* Programme type label */}
+          {isSpecialised && (
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-hub71-green">
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              <span className="text-hub71-green text-[11px] font-medium tracking-wide">
+                Specialised programme
+              </span>
+            </div>
+          )}
+
+          {programme.type === "sector-specific" && (
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-hub71-green">
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              <span className="text-hub71-green text-[11px] font-medium tracking-wide">
+                Sector-specific programme
+              </span>
+            </div>
+          )}
+
+          {/* Programme name */}
+          <h3
+            className={`font-bold text-dark-blue mb-3 ${
+              isAccess || isGeneral ? "text-2xl" : "text-base tracking-widest"
+            }`}
+          >
+            {programme.name}
+          </h3>
+
+          {/* Chevrons for Access card */}
+          {isAccess && (
+            <div className="flex flex-col items-start mb-4">
+              <svg
+                className="w-5 h-5 text-gray-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <svg
+                className="w-5 h-5 text-gray-300 -mt-1"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <svg
+                className="w-5 h-5 text-gray-300 -mt-1"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="flex items-center gap-3">
+            {programme.hasApplyButton && (
+              <button className="bg-hub71-green text-white text-[11px] font-bold px-4 py-2 rounded hover:bg-green-600 transition-colors tracking-wide">
+                APPLY NOW
+              </button>
+            )}
+            <button className="w-8 h-8 border border-[#D5DAEB] flex items-center justify-center hover:bg-white transition-colors text-gray-400">
+              +
+            </button>
+          </div>
         </div>
 
-        {/* Description - positioned to the right */}
-        <p className="text-gray-500 text-sm mt-4 italic max-w-md">
+        {/* Right side - Description */}
+        <p className="text-[#000000] text-[18px] font-bold max-w-md text-right">
           {programme.description}
         </p>
       </div>
@@ -217,7 +220,7 @@ const ProgrammeCard = ({
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="px-6 pb-6 pt-2 border-t border-gray-100"
+          className="px-6 pb-6 pt-2 border-t border-[#D5DAEB]"
         >
           <p className="text-gray-500 text-sm">
             More details about the {programme.name} programme will be displayed
